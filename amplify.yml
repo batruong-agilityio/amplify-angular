@@ -1,0 +1,21 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands: []
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npx ng version
+    build:
+      commands:
+        - npx ng build --configuration=production
+  artifacts:
+    baseDirectory: dist/amplify-angular/browser
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .npm/**/*
+      - node_modules/**/*
