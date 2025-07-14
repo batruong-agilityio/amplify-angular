@@ -1,0 +1,370 @@
+{
+  "auth": {
+    "user_pool_id": "us-east-1_u7lrAnqVv",
+    "aws_region": "us-east-1",
+    "user_pool_client_id": "vnjlflvpjvi94fei7uiifrtc9",
+    "identity_pool_id": "us-east-1:bd0789c8-1c5d-4fac-a6c6-68af4d713b35",
+    "mfa_methods": [],
+    "standard_required_attributes": [
+      "email",
+      "phone_number",
+      "given_name",
+      "family_name"
+    ],
+    "username_attributes": [
+      "email"
+    ],
+    "user_verification_types": [
+      "email"
+    ],
+    "groups": [],
+    "mfa_configuration": "NONE",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_numbers": true,
+      "require_symbols": true,
+      "require_uppercase": true
+    },
+    "unauthenticated_identities_enabled": true
+  },
+  "data": {
+    "url": "https://wi5jbbc4qrfubfaffdnj75xisa.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_region": "us-east-1",
+    "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
+    "authorization_types": [
+      "AWS_IAM"
+    ],
+    "model_introspection": {
+      "version": 1,
+      "models": {},
+      "enums": {},
+      "nonModels": {
+        "SignupReturnType": {
+          "name": "SignupReturnType",
+          "fields": {
+            "idempotencyKey": {
+              "name": "idempotencyKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "GetApplicationReturnType": {
+          "name": "GetApplicationReturnType",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "SignupVerifyOtpReturnType": {
+          "name": "SignupVerifyOtpReturnType",
+          "fields": {
+            "success": {
+              "name": "success",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "SubmitApplicationReturnType": {
+          "name": "SubmitApplicationReturnType",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        }
+      },
+      "queries": {
+        "applications": {
+          "name": "applications",
+          "isArray": false,
+          "type": {
+            "nonModel": "GetApplicationReturnType"
+          },
+          "isRequired": false
+        }
+      },
+      "mutations": {
+        "signup": {
+          "name": "signup",
+          "isArray": false,
+          "type": {
+            "nonModel": "SignupReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "email": {
+              "name": "email",
+              "isArray": false,
+              "type": "AWSEmail",
+              "isRequired": true
+            },
+            "password": {
+              "name": "password",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "phoneCode": {
+              "name": "phoneCode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "phoneNumber": {
+              "name": "phoneNumber",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "firstName": {
+              "name": "firstName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "lastName": {
+              "name": "lastName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "userType": {
+              "name": "userType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "verifyOtp": {
+          "name": "verifyOtp",
+          "isArray": false,
+          "type": {
+            "nonModel": "SignupVerifyOtpReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "idempotencyKey": {
+              "name": "idempotencyKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "otpCode": {
+              "name": "otpCode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "email": {
+              "name": "email",
+              "isArray": false,
+              "type": "AWSEmail",
+              "isRequired": true
+            },
+            "password": {
+              "name": "password",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "phoneCode": {
+              "name": "phoneCode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "phoneNumber": {
+              "name": "phoneNumber",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "firstName": {
+              "name": "firstName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "lastName": {
+              "name": "lastName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "userType": {
+              "name": "userType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "submitApplication": {
+          "name": "submitApplication",
+          "isArray": false,
+          "type": {
+            "nonModel": "SubmitApplicationReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "email": {
+              "name": "email",
+              "isArray": false,
+              "type": "AWSEmail",
+              "isRequired": true
+            },
+            "address": {
+              "name": "address",
+              "isArray": false,
+              "type": {
+                "input": "SubmitApplicationAddressInput"
+              },
+              "isRequired": false
+            },
+            "accountType": {
+              "name": "accountType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "isAcceptedTc": {
+              "name": "isAcceptedTc",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true
+            },
+            "firstName": {
+              "name": "firstName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "lastName": {
+              "name": "lastName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "phoneNumber": {
+              "name": "phoneNumber",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "phoneCode": {
+              "name": "phoneCode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "occupation": {
+              "name": "occupation",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "annualIncome": {
+              "name": "annualIncome",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "sourceOfIncome": {
+              "name": "sourceOfIncome",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "nationality": {
+              "name": "nationality",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "passport": {
+              "name": "passport",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "ssn": {
+              "name": "ssn",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "dateOfBirth": {
+              "name": "dateOfBirth",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      },
+      "inputs": {
+        "SubmitApplicationAddressInput": {
+          "name": "SubmitApplicationAddressInput",
+          "attributes": {
+            "street": {
+              "name": "street",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "city": {
+              "name": "city",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "state": {
+              "name": "state",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "postalCode": {
+              "name": "postalCode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "country": {
+              "name": "country",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": "1.4",
+  "custom": {
+    "dbEndpoint": "amplify-awstraining-batru-trainingdevpostgresqlins-qmgx7xyxv1kx.c14ue2imo5i7.us-east-1.rds.amazonaws.com",
+    "dbPort": "5432",
+    "dbName": "Training",
+    "userPoolId": "us-east-1_u7lrAnqVv",
+    "businessAppClientId": "4u4pql6ku8f8esugbijeqmhp2s",
+    "consumerAppClientId": "7vl3ohth824d688q2e8c9ovtsj"
+  }
+}
