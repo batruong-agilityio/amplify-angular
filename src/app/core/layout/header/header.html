@@ -1,1 +1,30 @@
-<p>header works!</p>
+<mat-toolbar>
+  <button
+    matIconButton
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+
+  <ul *ifAuthenticated="false" class="nav navbar-nav pull-xs-right"></ul>
+  <div>
+    <button
+      matButton="outlined"
+      routerLink="/login"
+      class="login-button"
+      *ngIf="currentRoute !== '/login'"
+    >
+      Login
+    </button>
+    <button
+      matButton="filled"
+      routerLink="/register"
+      *ngIf="currentRoute !== '/register'"
+    >
+      Create Account
+    </button>
+  </div>
+</mat-toolbar>

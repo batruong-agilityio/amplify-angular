@@ -1,4 +1,14 @@
 /* @import '~@aws-amplify/ui-angular/theme.css'; */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.form-field-wrapper .mat-mdc-form-field-icon-prefix {
+  padding-left: 5px;
+}

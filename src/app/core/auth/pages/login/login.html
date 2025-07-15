@@ -1,0 +1,28 @@
+<div class="form-wrapper">
+  <mat-card class="form-card">
+    <h2 class="form-title">Login</h2>
+    <p class="form-subtitle">Welcome back.</p>
+
+    <form [formGroup]="loginForm">
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="email">Email</label>
+        <mat-form-field appearance="outline" class="full-width email-field">
+          <input matInput type="email" name="email" formControlName="email" />
+        </mat-form-field>
+      </div>
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="password">Password</label>
+        <mat-form-field appearance="outline" class="full-width password-field">
+          <input
+            matInput
+            type="password"
+            name="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </div>
+
+      <button matButton="filled" class="submit-btn" type="submit">Login</button>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,76 @@
+<div class="form-wrapper">
+  <mat-card class="form-card">
+    <h2 class="form-title">Create Account</h2>
+    <p class="form-subtitle">Create a login to get started.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="email">Email</label>
+        <mat-form-field appearance="outline" class="full-width email-field">
+          <input matInput type="email" name="email" formControlName="email" />
+        </mat-form-field>
+      </div>
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="password">Password</label>
+        <mat-form-field appearance="outline" class="full-width password-field">
+          <input
+            matInput
+            type="password"
+            name="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="first-name">First Name</label>
+        <mat-form-field
+          appearance="outline"
+          class="full-width first-name-field"
+        >
+          <input
+            matInput
+            type="text"
+            name="first-name"
+            formControlName="firstName"
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="phone">Last Name</label>
+        <mat-form-field appearance="outline" class="full-width last-name-field">
+          <input
+            matInput
+            type="text"
+            name="last-name"
+            formControlName="lastName"
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="phone">Mobile Number</label>
+        <mat-form-field appearance="outline" class="full-width phone-field">
+          <span matPrefix>
+            <img
+              src="https://flagcdn.com/us.svg"
+              alt="US Flag"
+              class="flag-icon"
+            />
+            &nbsp;
+          </span>
+          <input
+            matInput
+            placeholder="(555) 555-5555"
+            type="tel"
+            name="phone"
+            formControlName="phoneNumber"
+          />
+        </mat-form-field>
+      </div>
+      <p class="helper-text">Please use a number that can receive SMS.</p>
+
+      <button matButton="filled" class="submit-btn" type="submit">
+        Create Account
+      </button>
+    </form>
+  </mat-card>
+</div>

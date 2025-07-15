@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { map, distinctUntilChanged } from 'rxjs/operators';
 import * as Auth from 'aws-amplify/auth';
+import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 
 import { SigninProps, SignupProps } from '../auth.models';
 
@@ -25,7 +25,7 @@ export class AuthService {
     this.setAuth(authUser);
   }
 
-  async register(credentials: SignupProps): Promise<void> {
+  async signUp(credentials: SignupProps): Promise<void> {
     await Auth.signUp({
       username: credentials.email,
       password: credentials.password,

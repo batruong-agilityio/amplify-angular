@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 
 import { Amplify } from 'aws-amplify';
 import outputs from '../../amplify_outputs.json';
+import Header from './core/layout/header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
