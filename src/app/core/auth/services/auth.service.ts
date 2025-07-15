@@ -1,10 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { generateClient } from 'aws-amplify/api';
 import * as Auth from 'aws-amplify/auth';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
 import { SigninProps, SignupProps } from '../auth.models';
+import { signup } from './../../../graphql/mutations/signup';
+
+const client = generateClient();
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -26,16 +30,9 @@ export class AuthService {
   }
 
   async signUp(credentials: SignupProps): Promise<void> {
-    await Auth.signUp({
-      username: credentials.email,
-      password: credentials.password,
-      options: {
-        userAttributes: {
-          email: credentials.email,
-          given_name: credentials.firstName,
-          family_name: credentials.lastName,
-        },
-      },
+    const data = await client.graphql({
+      query: signup,
+      variables: { input: credentials },
     });
   }
 

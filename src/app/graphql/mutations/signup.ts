@@ -1,0 +1,55 @@
+export const signup = /* GraphQL */ `
+  mutation Signup(
+    $email: AWSEmail!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+    $phoneCode: String!
+    $phoneNumber: String!
+    $userType: String!
+  ) {
+    signup(
+      input: {
+        email: $email
+        password: $password
+        firstName: $firstName
+        lastName: $lastName
+        phoneCode: $phoneCode
+        phoneNumber: $phoneNumber
+        userType: $userType
+      }
+    ) {
+      idempotencyKey
+    }
+  }
+`;
+
+export const verifySignupOtp = /* GraphQL */ `
+  mutation SignupOtp(
+    $idempotencyKey: String!
+    $otpCode: String!
+    $email: AWSEmail!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+    $phoneCode: String!
+    $phoneNumber: String!
+    $userType: String!
+  ) {
+    verifyOtp(
+      input: {
+        idempotencyKey: $idempotencyKey
+        otpCode: $otpCode
+        email: $email
+        password: $password
+        firstName: $firstName
+        lastName: $lastName
+        phoneCode: $phoneCode
+        phoneNumber: $phoneNumber
+        userType: $userType
+      }
+    ) {
+      success
+    }
+  }
+`;
