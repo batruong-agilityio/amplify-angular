@@ -11,12 +11,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '@app-auth/services/auth.service';
 
 @Component({
   selector: 'app-register',
   imports: [
     CommonModule,
+    RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -36,6 +38,7 @@ export default class RegisterComponent {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],

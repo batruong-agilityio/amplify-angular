@@ -4,6 +4,36 @@
     <p class="form-subtitle">Create a login to get started.</p>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-field-wrapper">
+          <label class="form-field-label" for="first-name">First Name</label>
+          <mat-form-field
+            appearance="outline"
+            class="full-width first-name-field"
+          >
+            <input
+              matInput
+              type="text"
+              name="first-name"
+              formControlName="firstName"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <label class="form-field-label" for="phone">Last Name</label>
+          <mat-form-field
+            appearance="outline"
+            class="full-width last-name-field"
+          >
+            <input
+              matInput
+              type="text"
+              name="last-name"
+              formControlName="lastName"
+            />
+          </mat-form-field>
+        </div>
+      </div>
       <div class="form-field-wrapper">
         <label class="form-field-label" for="email">Email</label>
         <mat-form-field appearance="outline" class="full-width email-field">
@@ -22,28 +52,12 @@
         </mat-form-field>
       </div>
       <div class="form-field-wrapper">
-        <label class="form-field-label" for="first-name">First Name</label>
+        <label class="form-field-label" for="confirm">Confirm Password</label>
         <mat-form-field
           appearance="outline"
-          class="full-width first-name-field"
+          class="full-width confirm-password-field"
         >
-          <input
-            matInput
-            type="text"
-            name="first-name"
-            formControlName="firstName"
-          />
-        </mat-form-field>
-      </div>
-      <div class="form-field-wrapper">
-        <label class="form-field-label" for="phone">Last Name</label>
-        <mat-form-field appearance="outline" class="full-width last-name-field">
-          <input
-            matInput
-            type="text"
-            name="last-name"
-            formControlName="lastName"
-          />
+          <input matInput name="confirm" formControlName="confirmPassword" />
         </mat-form-field>
       </div>
       <div class="form-field-wrapper">
@@ -64,13 +78,29 @@
             name="phone"
             formControlName="phoneNumber"
           />
+          <mat-hint class="helper-text"
+            >Please use a number that can receive SMS.</mat-hint
+          >
         </mat-form-field>
       </div>
-      <p class="helper-text">Please use a number that can receive SMS.</p>
 
-      <button matButton="filled" class="submit-btn" type="submit">
+      <button
+        matButton="filled"
+        class="submit-btn w-full mt-6"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
         Create Account
       </button>
+
+      <div class="text-center mt-4">
+        <span>Do you have an account?</span
+        ><span class="pl-2"
+          ><a role="link" routerLink="/login" class="underline cursor-pointer"
+            >Log In</a
+          ></span
+        >
+      </div>
     </form>
   </mat-card>
 </div>

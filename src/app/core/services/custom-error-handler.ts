@@ -6,9 +6,11 @@ export class CustomErrorHandler {
   private snackBar = inject(MatSnackBar);
 
   handleError(error: { errors: { message: string }[] }) {
-    this.snackBar.open(`${error.errors[0].message}`, 'Close', {
+    console.error('CustomErrorHandler:', error);
+    const message = error.errors?.[0].message || 'Something went wrong';
+
+    this.snackBar.open(message, 'Close', {
       duration: 5000,
     });
-    console.error('CustomErrorHandler:', error.errors);
   }
 }

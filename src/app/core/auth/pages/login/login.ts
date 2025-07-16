@@ -11,13 +11,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import * as Auth from 'aws-amplify/auth';
 
 @Component({
   selector: 'app-login',
   imports: [
     CommonModule,
+    RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

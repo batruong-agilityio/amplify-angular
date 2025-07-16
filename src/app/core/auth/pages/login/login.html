@@ -22,7 +22,26 @@
         </mat-form-field>
       </div>
 
-      <button matButton="filled" class="submit-btn" type="submit">Login</button>
+      <button
+        matButton="filled"
+        class="submit-btn w-full mt-6"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+
+      <div class="text-center mt-4">
+        <span>Don't have an account?</span
+        ><span class="pl-2"
+          ><a
+            role="link"
+            routerLink="/register"
+            class="underline cursor-pointer"
+            >Sign up</a
+          ></span
+        >
+      </div>
     </form>
   </mat-card>
 </div>
