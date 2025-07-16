@@ -1,0 +1,30 @@
+<mat-dialog-content
+  class="mat-typography flex items-center justify-center text-center"
+>
+  <div class="w-full">
+    <h3 class="bold text-2xl">Verification Code</h3>
+    <p class="mt-4 mb-8">
+      Enter the 6-digit code we sent to {{ phoneNumber }}.
+    </p>
+
+    <div class="6-dit-code flex justify-center">
+      <ng-otp-input
+        [formControl]="otpControl"
+        [config]="otpConfig"
+      ></ng-otp-input>
+    </div>
+
+    <div class="flex justify-center items-center mt-12">
+      <button matButton="outlined" mat-dialog-close>Cancel</button>
+      <button
+        matButton="filled"
+        cdkFocusInitial
+        [disabled]="otpControl.invalid"
+        (click)="verifyCode()"
+        class="ml-2"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</mat-dialog-content>

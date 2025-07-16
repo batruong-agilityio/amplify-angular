@@ -12,6 +12,7 @@ export interface SignupInput {
   phoneNumber: string;
   firstName: string;
   lastName: string;
+  userType: string;
 }
 
 export interface SigninInput {

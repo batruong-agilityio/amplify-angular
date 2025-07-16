@@ -1,0 +1,5 @@
+app-auth-verification-code {
+  .mat-mdc-dialog-content {
+    display: flex;
+  }
+}

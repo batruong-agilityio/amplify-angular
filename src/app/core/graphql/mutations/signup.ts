@@ -4,7 +4,13 @@ export interface SignupReturnType {
   };
 }
 
-export const signup = /* GraphQL */ `
+export interface SignupVerifyOtpReturnType {
+  verifyOtp: {
+    success: boolean;
+  };
+}
+
+export const signupMutation = /* GraphQL */ `
   mutation Signup(
     $email: AWSEmail!
     $password: String!
@@ -28,7 +34,7 @@ export const signup = /* GraphQL */ `
   }
 `;
 
-export const verifySignupOtp = /* GraphQL */ `
+export const signupVerifyOtpMutation = /* GraphQL */ `
   mutation SignupOtp(
     $idempotencyKey: String!
     $otpCode: String!

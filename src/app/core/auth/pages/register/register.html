@@ -7,10 +7,7 @@
       <div class="grid grid-cols-2 gap-4">
         <div class="form-field-wrapper">
           <label class="form-field-label" for="first-name">First Name</label>
-          <mat-form-field
-            appearance="outline"
-            class="full-width first-name-field"
-          >
+          <mat-form-field appearance="outline" class="full-width">
             <input
               matInput
               type="text"
@@ -21,10 +18,7 @@
         </div>
         <div class="form-field-wrapper">
           <label class="form-field-label" for="phone">Last Name</label>
-          <mat-form-field
-            appearance="outline"
-            class="full-width last-name-field"
-          >
+          <mat-form-field appearance="outline" class="full-width">
             <input
               matInput
               type="text"
@@ -42,7 +36,7 @@
       </div>
       <div class="form-field-wrapper">
         <label class="form-field-label" for="password">Password</label>
-        <mat-form-field appearance="outline" class="full-width password-field">
+        <mat-form-field appearance="outline" class="full-width">
           <input
             matInput
             type="password"
@@ -53,16 +47,18 @@
       </div>
       <div class="form-field-wrapper">
         <label class="form-field-label" for="confirm">Confirm Password</label>
-        <mat-form-field
-          appearance="outline"
-          class="full-width confirm-password-field"
-        >
-          <input matInput name="confirm" formControlName="confirmPassword" />
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            name="confirm"
+            type="password"
+            formControlName="confirmPassword"
+          />
         </mat-form-field>
       </div>
       <div class="form-field-wrapper">
         <label class="form-field-label" for="phone">Mobile Number</label>
-        <mat-form-field appearance="outline" class="full-width phone-field">
+        <mat-form-field appearance="outline" class="full-width">
           <span matPrefix>
             <img
               src="https://flagcdn.com/us.svg"
