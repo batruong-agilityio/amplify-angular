@@ -13,7 +13,14 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/app/*"],
+      "@app-core/*": ["src/app/core/*"],
+      "@app-auth/*": ["src/app/core/auth/*"],
+      "@app-graphql/*": ["src/app/core/graphql/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

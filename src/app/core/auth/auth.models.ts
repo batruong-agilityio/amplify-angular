@@ -5,7 +5,7 @@ export interface User {
   phoneNumber: string;
 }
 
-export interface SignupProps {
+export interface SignupInput {
   email: string;
   password: string;
   phoneCode: string;
@@ -14,7 +14,7 @@ export interface SignupProps {
   lastName: string;
 }
 
-export interface SigninProps {
+export interface SigninInput {
   email: string;
   password: string;
 }

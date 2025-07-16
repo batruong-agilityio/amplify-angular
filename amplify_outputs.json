@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "us-east-1_u7lrAnqVv",
+    "user_pool_id": "us-east-1_Ut9CXPH3Z",
     "aws_region": "us-east-1",
-    "user_pool_client_id": "vnjlflvpjvi94fei7uiifrtc9",
-    "identity_pool_id": "us-east-1:bd0789c8-1c5d-4fac-a6c6-68af4d713b35",
+    "user_pool_client_id": "6p6tv7h7e06hgmftcee3ruroeh",
+    "identity_pool_id": "us-east-1:37b04081-dcd5-4609-87f1-89bdc83fa3ff",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email",
@@ -11,12 +11,8 @@
       "given_name",
       "family_name"
     ],
-    "username_attributes": [
-      "email"
-    ],
-    "user_verification_types": [
-      "email"
-    ],
+    "username_attributes": ["email"],
+    "user_verification_types": ["email"],
     "groups": [],
     "mfa_configuration": "NONE",
     "password_policy": {
@@ -29,12 +25,10 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://wi5jbbc4qrfubfaffdnj75xisa.appsync-api.us-east-1.amazonaws.com/graphql",
+    "url": "https://lkese2bttzhhdj2u5yhnwf5il4.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
-    "authorization_types": [
-      "AWS_IAM"
-    ],
+    "authorization_types": ["AWS_IAM"],
     "model_introspection": {
       "version": 1,
       "models": {},
@@ -360,11 +354,11 @@
   },
   "version": "1.4",
   "custom": {
-    "dbEndpoint": "amplify-awstraining-batru-trainingdevpostgresqlins-qmgx7xyxv1kx.c14ue2imo5i7.us-east-1.rds.amazonaws.com",
+    "dbEndpoint": "amplify-d1l32hhq6ktj8c-ma-trainingdevpostgresqlins-tf4y6cu7lkaq.c14ue2imo5i7.us-east-1.rds.amazonaws.com",
     "dbPort": "5432",
     "dbName": "Training",
-    "userPoolId": "us-east-1_u7lrAnqVv",
-    "businessAppClientId": "4u4pql6ku8f8esugbijeqmhp2s",
-    "consumerAppClientId": "7vl3ohth824d688q2e8c9ovtsj"
+    "userPoolId": "us-east-1_Ut9CXPH3Z",
+    "businessAppClientId": "4v25cjb7sn5680okojrv930jn1",
+    "consumerAppClientId": "53koc2tv9j5tvio3nikuvkv7kd"
   }
 }

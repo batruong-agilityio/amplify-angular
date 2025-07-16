@@ -11,8 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import * as Auth from 'aws-amplify/auth';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '@app-auth/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -46,20 +45,7 @@ export default class RegisterComponent {
   async onSubmit() {
     if (this.registerForm.valid) {
       const payload = this.registerForm.value;
-
       await this.authService.signUp(payload);
-      Auth.signUp({
-        username: payload.email!,
-        password: payload.password!,
-        options: {
-          userAttributes: {
-            email: payload.email!,
-            given_name: payload.firstName!,
-            family_name: payload.lastName!,
-            phone_number: `+${payload.phoneCode}${payload.phoneNumber}`,
-          },
-        },
-      });
     } else {
       this.registerForm.markAllAsTouched();
     }

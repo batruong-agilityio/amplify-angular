@@ -1,26 +1,25 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { generateClient } from 'aws-amplify/api';
+import { generateClient, GraphQLResult } from 'aws-amplify/api';
 import * as Auth from 'aws-amplify/auth';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
-import { SigninProps, SignupProps } from '../auth.models';
-import { signup } from './../../../graphql/mutations/signup';
+import { signup, SignupReturnType } from '@app-graphql/mutations/signup';
+import { SigninInput, SignupInput } from '../auth.models';
 
 const client = generateClient();
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private router = inject(Router);
-  private currentUserSubject = new BehaviorSubject<Auth.AuthUser | null>(null);
-  public currentUser = this.currentUserSubject
+  private _router = inject(Router);
+  private _currentUserSubject = new BehaviorSubject<Auth.AuthUser | null>(null);
+  public currentUser = this._currentUserSubject
     .asObservable()
     .pipe(distinctUntilChanged());
-
   public isAuthenticated = this.currentUser.pipe(map((user) => !!user));
 
-  async login(credentials: SigninProps): Promise<void> {
+  async login(credentials: SigninInput): Promise<void> {
     await Auth.signIn({
       username: credentials.email,
       password: credentials.password,
@@ -29,16 +28,27 @@ export class AuthService {
     this.setAuth(authUser);
   }
 
-  async signUp(credentials: SignupProps): Promise<void> {
-    const data = await client.graphql({
+  async signUp(credentials: SignupInput): Promise<SignupReturnType> {
+    const result: GraphQLResult<SignupReturnType> = (await client.graphql({
       query: signup,
-      variables: { input: credentials },
-    });
+      variables: {
+        email: credentials.email,
+        firstName: credentials.firstName,
+        lastName: credentials.lastName,
+        password: credentials.password,
+        phoneNumber: credentials.phoneNumber,
+        phoneCode: '1',
+        userType: 'Consumer',
+      },
+      authMode: 'identityPool',
+    })) as GraphQLResult<SignupReturnType>;
+
+    return result.data;
   }
 
   logout(): void {
     this.purgeAuth();
-    void this.router.navigate(['/']);
+    void this._router.navigate(['/']);
   }
 
   async getCurrentUser(): Promise<Auth.AuthUser> {
@@ -46,10 +56,10 @@ export class AuthService {
   }
 
   setAuth(user: Auth.AuthUser): void {
-    this.currentUserSubject.next(user);
+    this._currentUserSubject.next(user);
   }
 
   purgeAuth(): void {
-    this.currentUserSubject.next(null);
+    this._currentUserSubject.next(null);
   }
 }

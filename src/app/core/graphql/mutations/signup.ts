@@ -1,3 +1,9 @@
+export interface SignupReturnType {
+  signup: {
+    idempotencyKey: string;
+  };
+}
+
 export const signup = /* GraphQL */ `
   mutation Signup(
     $email: AWSEmail!
@@ -9,15 +15,13 @@ export const signup = /* GraphQL */ `
     $userType: String!
   ) {
     signup(
-      input: {
-        email: $email
-        password: $password
-        firstName: $firstName
-        lastName: $lastName
-        phoneCode: $phoneCode
-        phoneNumber: $phoneNumber
-        userType: $userType
-      }
+      email: $email
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+      phoneCode: $phoneCode
+      phoneNumber: $phoneNumber
+      userType: $userType
     ) {
       idempotencyKey
     }
@@ -37,17 +41,15 @@ export const verifySignupOtp = /* GraphQL */ `
     $userType: String!
   ) {
     verifyOtp(
-      input: {
-        idempotencyKey: $idempotencyKey
-        otpCode: $otpCode
-        email: $email
-        password: $password
-        firstName: $firstName
-        lastName: $lastName
-        phoneCode: $phoneCode
-        phoneNumber: $phoneNumber
-        userType: $userType
-      }
+      idempotencyKey: $idempotencyKey
+      otpCode: $otpCode
+      email: $email
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+      phoneCode: $phoneCode
+      phoneNumber: $phoneNumber
+      userType: $userType
     ) {
       success
     }

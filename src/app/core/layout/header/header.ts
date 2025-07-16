@@ -5,8 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { IfAuthenticatedDirective } from '../../auth/if-authenticated.directive';
-import { AuthService } from '../../auth/services/auth.service';
+
+import { IfAuthenticatedDirective } from '@app-auth/if-authenticated.directive';
+import { AuthService } from '@app-auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
