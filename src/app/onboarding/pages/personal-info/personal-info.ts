@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './personal-info.html',
   styleUrl: './personal-info.css',
 })
-export class PersonalInfo {}
+export default class PersonalInfo {}

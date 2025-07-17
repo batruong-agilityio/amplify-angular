@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './review-application.html',
   styleUrl: './review-application.css',
 })
-export class ReviewApplication {}
+export default class ReviewApplication {}

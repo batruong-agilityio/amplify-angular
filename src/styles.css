@@ -12,3 +12,10 @@ body {
 .form-field-wrapper .mat-mdc-form-field-icon-prefix {
   padding-left: 5px;
 }
+
+.snack-bar-error.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface {
+  background-color: #f44336;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+}

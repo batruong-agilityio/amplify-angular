@@ -3,7 +3,7 @@
     <h2 class="form-title">Login</h2>
     <p class="form-subtitle">Welcome back.</p>
 
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-field-wrapper">
         <label class="form-field-label" for="email">Email</label>
         <mat-form-field appearance="outline" class="full-width email-field">

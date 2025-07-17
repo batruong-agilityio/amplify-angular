@@ -1,9 +1,6 @@
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { generateClient, GraphQLResult } from 'aws-amplify/api';
 import * as Auth from 'aws-amplify/auth';
-import { BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
 
 import {
   signupMutation,
@@ -17,20 +14,23 @@ const client = generateClient();
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private _router = inject(Router);
-  private _currentUserSubject = new BehaviorSubject<Auth.AuthUser | null>(null);
-  public currentUser = this._currentUserSubject
-    .asObservable()
-    .pipe(distinctUntilChanged());
-  public isAuthenticated = this.currentUser.pipe(map((user) => !!user));
-
   async login(credentials: SigninInput): Promise<void> {
-    await Auth.signIn({
+    const { nextStep } = await Auth.signIn({
       username: credentials.email,
       password: credentials.password,
     });
-    const authUser = await this.getCurrentUser();
-    this.setAuth(authUser);
+
+    if (nextStep.signInStep == 'DONE') {
+      return;
+    }
+
+    console.error(`nextStep.signInStep: `, nextStep.signInStep);
+
+    if (nextStep.signInStep == 'CONFIRM_SIGN_UP') {
+      throw new Error('Please visit your email to confirm signup!');
+    } else {
+      throw new Error('Cannot sign in!');
+    }
   }
 
   async signUp(credentials: SignupInput): Promise<SignupReturnType> {
@@ -73,20 +73,20 @@ export class AuthService {
     return result.data;
   }
 
-  logout(): void {
-    this.purgeAuth();
-    void this._router.navigate(['/']);
+  logout(): Promise<void> {
+    return Auth.signOut({ global: true });
   }
 
-  async getCurrentUser(): Promise<Auth.AuthUser> {
-    return Auth.getCurrentUser();
+  async getCurrentUser(): Promise<Auth.AuthUser | null> {
+    try {
+      return await Auth.getCurrentUser();
+    } catch {
+      return null;
+    }
   }
 
-  setAuth(user: Auth.AuthUser): void {
-    this._currentUserSubject.next(user);
-  }
-
-  purgeAuth(): void {
-    this._currentUserSubject.next(null);
+  async isAuthenticated(): Promise<boolean> {
+    const user = await this.getCurrentUser();
+    return !!user;
   }
 }

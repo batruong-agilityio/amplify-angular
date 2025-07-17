@@ -14,8 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
-
-import * as Auth from 'aws-amplify/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +36,7 @@ export default class LoginComponent {
   readonly fb = inject(FormBuilder);
   readonly router = inject(Router);
   readonly loadingService = inject(LoadingService);
+  readonly authService = inject(AuthService);
 
   loginForm!: FormGroup;
 
@@ -49,13 +49,18 @@ export default class LoginComponent {
 
   async onSubmit() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      const { nextStep } = await Auth.signIn({
-        username: email!,
-        password: password!,
-      });
+      // const { email, password } = this.loginForm.value;
+      // const { nextStep } = await Auth.signIn({
+      //   username: email!,
+      //   password: password!,
+      // });
 
-      console.log('LOG nextStep', nextStep);
+      // console.log('LOG nextStep', nextStep);
+      this.loadingService.loadingOn();
+      await this.authService.login(this.loginForm.value);
+      this.loadingService.loadingOff();
+
+      this.router.navigateByUrl('/home');
     } else {
       this.loginForm.markAllAsTouched();
     }

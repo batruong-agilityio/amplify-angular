@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './terms-agreement.html',
   styleUrl: './terms-agreement.css',
 })
-export class TermsAgreement {}
+export default class TermsAgreement {}

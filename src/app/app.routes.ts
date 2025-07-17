@@ -1,7 +1,8 @@
-import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AuthService } from './core/auth/services/auth.service';
+import { authGuard } from '@app-auth/guards/auth-guard';
+import { SidebarLayout } from '@app-core/layout/sidebar-layout/sidebar-layout';
+import { onboardingStatusGuard } from './onboarding/guards/onboarding-status-guard';
+import { OnboardingLayout } from './onboarding/onboarding-layout/onboarding-layout';
 
 export const routes: Routes = [
   {
@@ -12,30 +13,60 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('./core/auth/pages/login/login'),
-    canActivate: [
-      () => inject(AuthService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
-    ],
+    canActivate: [authGuard],
   },
   {
     path: 'register',
     loadComponent: () => import('./core/auth/pages/register/register'),
-    canActivate: [
-      () => inject(AuthService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
-    ],
+    canActivate: [authGuard],
   },
   {
     path: 'email-verify-sent',
     loadComponent: () =>
       import('./core/auth/pages/email-verify-sent/email-verify-sent'),
-    canActivate: [
-      () => inject(AuthService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
-    ],
+    canActivate: [authGuard],
   },
   {
     path: 'confirm-user',
     loadComponent: () => import('./core/auth/pages/confirm-user/confirm-user'),
-    canActivate: [
-      () => inject(AuthService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'home',
+    component: SidebarLayout,
+    canActivate: [authGuard, onboardingStatusGuard],
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./home/home'),
+      },
+    ],
+  },
+  {
+    path: 'onboarding',
+    component: OnboardingLayout,
+    canActivate: [authGuard, onboardingStatusGuard],
+    children: [
+      {
+        path: 'your-address',
+        loadComponent: () =>
+          import('./onboarding/pages/your-address/your-address'),
+      },
+      {
+        path: 'personal-info',
+        loadComponent: () =>
+          import('./onboarding/pages/personal-info/personal-info'),
+      },
+      {
+        path: 'review-application',
+        loadComponent: () =>
+          import('./onboarding/pages/review-application/review-application'),
+      },
+      {
+        path: 'terms-agreement',
+        loadComponent: () =>
+          import('./onboarding/pages/terms-agreement/terms-agreement'),
+      },
     ],
   },
 ];
