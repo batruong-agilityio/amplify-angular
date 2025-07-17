@@ -1,3 +1,4 @@
+import { ButtonSubmit } from '@/core/components/button-submit/button-submit';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
@@ -14,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@app-auth/services/auth.service';
+
+import { LoadingService } from '@/core/services/loading';
 import { AuthVerificationCode } from '../../components/auth-verification-code/auth-verification-code';
 
 @Component({
@@ -29,6 +32,7 @@ import { AuthVerificationCode } from '../../components/auth-verification-code/au
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    ButtonSubmit,
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
@@ -37,6 +41,8 @@ export default class RegisterComponent {
   readonly fb = inject(FormBuilder);
   readonly authService = inject(AuthService);
   readonly dialog = inject(MatDialog);
+  readonly loadingService = inject(LoadingService);
+  focusOn = true;
 
   registerForm!: FormGroup;
 
@@ -55,9 +61,11 @@ export default class RegisterComponent {
   async onSubmit() {
     if (this.registerForm.valid) {
       const payload = this.registerForm.value;
+      this.loadingService.loadingOn();
       const result = await this.authService.signUp(payload);
-      const idempotencyKey = result?.signup?.idempotencyKey;
+      this.loadingService.loadingOff();
 
+      const idempotencyKey = result?.signup?.idempotencyKey;
       this.verifySignupOtp(idempotencyKey);
     } else {
       this.registerForm.markAllAsTouched();
@@ -65,13 +73,18 @@ export default class RegisterComponent {
   }
 
   verifySignupOtp(idempotencyKey: string) {
-    this.dialog.open(AuthVerificationCode, {
+    const dialogRef = this.dialog.open(AuthVerificationCode, {
       data: {
         ...this.registerForm.value,
         idempotencyKey,
       },
       minWidth: '560px',
       minHeight: '380px',
+      hasBackdrop: true,
+    });
+    this.focusOn = false;
+    dialogRef.afterClosed().subscribe(() => {
+      this.focusOn = true;
     });
   }
 }

@@ -1,3 +1,5 @@
+import { ButtonSubmit } from '@/core/components/button-submit/button-submit';
+import { LoadingService } from '@/core/services/loading';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
@@ -12,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+
 import * as Auth from 'aws-amplify/auth';
 
 @Component({
@@ -25,13 +28,16 @@ import * as Auth from 'aws-amplify/auth';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    ButtonSubmit,
   ],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })
 export default class LoginComponent {
-  private fb = inject(FormBuilder);
-  private router = inject(Router);
+  readonly fb = inject(FormBuilder);
+  readonly router = inject(Router);
+  readonly loadingService = inject(LoadingService);
+
   loginForm!: FormGroup;
 
   constructor() {

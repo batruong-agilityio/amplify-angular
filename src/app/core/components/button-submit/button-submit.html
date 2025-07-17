@@ -1,0 +1,16 @@
+<button
+  mat-flat-button
+  color="primary"
+  type="submit"
+  class="w-full"
+  [disabled]="(isLoading$ | async) && focusOn"
+>
+  <div class="flex items-center justify-center gap-2">
+    <mat-spinner
+      *ngIf="(isLoading$ | async) && focusOn"
+      diameter="20"
+      strokeWidth="3"
+    ></mat-spinner>
+    <span>{{ text }}</span>
+  </div>
+</button>

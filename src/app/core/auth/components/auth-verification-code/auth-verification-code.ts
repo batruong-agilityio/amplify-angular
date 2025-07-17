@@ -1,3 +1,5 @@
+import { ButtonSubmit } from '@/core/components/button-submit/button-submit';
+import { LoadingService } from '@/core/services/loading';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -20,6 +22,7 @@ export interface DialogData extends SignupInput {
     MatButtonModule,
     MatDialogModule,
     NgOtpInputModule,
+    ButtonSubmit,
   ],
   templateUrl: './auth-verification-code.html',
   styleUrl: './auth-verification-code.css',
@@ -30,9 +33,9 @@ export class AuthVerificationCode {
   readonly dialogRef = inject(DialogRef);
   readonly data = inject(MAT_DIALOG_DATA);
   readonly router = inject(Router);
+  readonly loadingService = inject(LoadingService);
 
   phoneNumber = `+${this.data.phoneCode}${this.data.phoneNumber}`;
-
   otpControl = new FormControl('', [
     Validators.required,
     Validators.minLength(6),
@@ -46,10 +49,12 @@ export class AuthVerificationCode {
 
   async verifyCode() {
     if (this.otpControl.valid) {
+      this.loadingService.loadingOn();
       const result = await this.authService.verifySignupOtp({
         ...this.data,
         otpCode: this.otpControl.value,
       });
+      this.loadingService.loadingOff();
 
       if (result?.verifyOtp.success) {
         this.router.navigate(['/email-verify-sent'], {
@@ -57,6 +62,8 @@ export class AuthVerificationCode {
         });
         this.dialogRef.close();
       }
+    } else {
+      this.otpControl.markAllAsTouched();
     }
   }
 }
