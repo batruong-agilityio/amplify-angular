@@ -31,4 +31,11 @@ export const routes: Routes = [
       () => inject(AuthService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
     ],
   },
+  {
+    path: 'confirm-user',
+    loadComponent: () => import('./core/auth/pages/confirm-user/confirm-user'),
+    canActivate: [
+      () => inject(AuthService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
+    ],
+  },
 ];
