@@ -1,0 +1,22 @@
+app-onboarding-layout {
+  .page-heading {
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .mat-toolbar {
+    background-color: transparent;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}

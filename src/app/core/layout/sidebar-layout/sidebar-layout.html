@@ -34,6 +34,21 @@
       color="primary"
       class="h-16 flex items-center justify-end px-4"
     >
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="notificationMenu"
+        aria-label="Notifications"
+      >
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <!-- Notification Menu -->
+      <mat-menu #notificationMenu="matMenu">
+        <button mat-menu-item *ngFor="let item of notifications">
+          {{ item }}
+        </button>
+      </mat-menu>
+
       <app-profile-menu></app-profile-menu>
     </mat-toolbar>
 

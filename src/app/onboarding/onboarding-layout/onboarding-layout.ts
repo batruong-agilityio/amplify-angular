@@ -1,5 +1,5 @@
 import { ProfileMenu } from '@/core/layout/profile-menu/profile-menu';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
@@ -8,5 +8,6 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule, MatToolbarModule, ProfileMenu],
   templateUrl: './onboarding-layout.html',
   styleUrl: './onboarding-layout.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class OnboardingLayout {}

@@ -1,1 +1,130 @@
-<p>personal-info works!</p>
+<mat-card class="form-card">
+  <h2 class="page-heading">Tell us a little bit more about your info.</h2>
+
+  <form
+    [formGroup]="personalInfoForm"
+    class="w-164 m-auto"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="your-address" formGroupName="address">
+      <h3 class="section-title text-left">Your Address</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-field-wrapper">
+          <label class="form-field-label" for="street">Street</label>
+          <mat-form-field appearance="outline">
+            <input matInput name="street" formControlName="street" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <label class="form-field-label" for="city">City</label>
+          <mat-form-field appearance="outline">
+            <input matInput name="street" formControlName="city" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <label class="form-field-label" for="state">State</label>
+          <mat-form-field appearance="outline">
+            <input matInput name="state" formControlName="state" />
+          </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+          <label class="form-field-label" for="postalCode">Postal Code</label>
+          <mat-form-field appearance="outline">
+            <input matInput name="postalCode" formControlName="postalCode" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title text-left mt-6">Personal Information</h3>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="firstName">First Name</label>
+        <mat-form-field appearance="outline">
+          <input matInput name="firstName" formControlName="firstName" />
+        </mat-form-field>
+      </div>
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="firstName">Last Name</label>
+        <mat-form-field appearance="outline">
+          <input matInput name="lastName" formControlName="lastName" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-field-wrapper">
+      <label class="form-field-label" for="email">Email</label>
+      <mat-form-field appearance="outline">
+        <input matInput name="email" formControlName="email" />
+      </mat-form-field>
+    </div>
+    <div class="form-field-wrapper">
+      <label class="form-field-label" for="phoneNumber">Phone Number</label>
+      <mat-form-field appearance="outline">
+        <input matInput name="phoneNumber" formControlName="phoneNumber" />
+      </mat-form-field>
+    </div>
+    <div class="form-field-wrapper">
+      <label class="form-field-label" for="state">US or non-US national?</label>
+      <mat-radio-group
+        formControlName="nationality"
+        class="text-left"
+        (change)="updateValidation($event.value)"
+      >
+        <mat-radio-button value="US">US</mat-radio-button>
+        <mat-radio-button value="non-US">Non US</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div *ngIf="personalInfoForm.value?.nationality === 'US'" class="mt-4">
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="ssn">SSN</label>
+        <mat-form-field appearance="outline">
+          <input matInput name="ssn" formControlName="ssn" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="personalInfoForm.value?.nationality === 'non-US'" class="mt-4">
+      <div class="form-field-wrapper">
+        <label class="form-field-label" for="passport">Passport</label>
+        <mat-form-field appearance="outline">
+          <input matInput name="passport" formControlName="passport" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-field-wrapper">
+      <label class="form-field-label" for="occupation">Occupation</label>
+      <mat-form-field appearance="outline">
+        <mat-select name="occupation" formControlName="occupation">
+          @for (entry of occupationEntries; track entry[0]) {
+            <mat-option [value]="entry[0]">{{ entry[1] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-field-wrapper">
+      <label class="form-field-label" for="annualIncome">Annual Income</label>
+      <mat-form-field appearance="outline">
+        <mat-select name="annualIncome" formControlName="annualIncome">
+          @for (entry of annualIncomeEntries; track entry[0]) {
+            <mat-option [value]="entry[0]">{{ entry[1] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-field-wrapper">
+      <label class="form-field-label" for="sourceOfIncome"
+        >Source Of Income</label
+      >
+      <mat-form-field appearance="outline">
+        <mat-select name="sourceOfIncome" formControlName="sourceOfIncome">
+          @for (entry of sourceOfIncomeEntries; track entry[0]) {
+            <mat-option [value]="entry[0]">{{ entry[1] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <app-button-submit text="SUBMIT"></app-button-submit>
+  </form>
+</mat-card>

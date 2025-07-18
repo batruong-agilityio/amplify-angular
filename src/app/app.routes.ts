@@ -48,19 +48,9 @@ export const routes: Routes = [
     canActivate: [authGuard, onboardingStatusGuard],
     children: [
       {
-        path: 'your-address',
-        loadComponent: () =>
-          import('./onboarding/pages/your-address/your-address'),
-      },
-      {
         path: 'personal-info',
         loadComponent: () =>
           import('./onboarding/pages/personal-info/personal-info'),
-      },
-      {
-        path: 'review-application',
-        loadComponent: () =>
-          import('./onboarding/pages/review-application/review-application'),
       },
       {
         path: 'terms-agreement',
@@ -68,5 +58,9 @@ export const routes: Routes = [
           import('./onboarding/pages/terms-agreement/terms-agreement'),
       },
     ],
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
   },
 ];

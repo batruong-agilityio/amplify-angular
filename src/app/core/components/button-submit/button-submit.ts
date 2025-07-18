@@ -1,7 +1,7 @@
 import { LoadingService } from '@/core/services/loading';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonAppearance, MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
@@ -14,6 +14,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class ButtonSubmit {
   @Input()
   text = 'Submit';
+
+  @Input()
+  appearance: MatButtonAppearance = 'filled';
 
   @Input()
   focusOn = true;

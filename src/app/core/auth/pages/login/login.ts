@@ -49,13 +49,6 @@ export default class LoginComponent {
 
   async onSubmit() {
     if (this.loginForm.valid) {
-      // const { email, password } = this.loginForm.value;
-      // const { nextStep } = await Auth.signIn({
-      //   username: email!,
-      //   password: password!,
-      // });
-
-      // console.log('LOG nextStep', nextStep);
       this.loadingService.loadingOn();
       await this.authService.login(this.loginForm.value);
       this.loadingService.loadingOff();
